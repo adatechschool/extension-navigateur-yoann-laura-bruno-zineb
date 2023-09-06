@@ -1,0 +1,35 @@
+.heighter { /* taille de fenêtre popup*/
+    position: static;
+    height: 10px;
+    width: 200px;
+}
+
+.heighter p { /* "temps de travail*/
+    top: 0;
+}
+
+.modal { 
+    display: none; /* ne pas afficher tout de suite*/
+    height: 10px;
+    width: 200px;
+}
+
+.modal-back { /*"continuer" s'affiche*/
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+   
+    backdrop-filter: blur(10px);
+}
+
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: 25px;
+    background: white;
+    transform: translate(-50%, -50%);
+}

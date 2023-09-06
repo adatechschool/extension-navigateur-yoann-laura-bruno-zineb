@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "color",
+  "version": "1.0",
+  "description": "modified title h1",
+  "permissions" : [
+    "activeTab",
+  "scripting",
+  "webNavigation"
+],
+
+  "icons": {
+    "128": "images/cercle-de-couleur.png"
+  },
+  "action": {
+    "default_icon": "images/cercle-de-couleur.png",
+    "default_popup": "index.html"
+  },
+
+  "content_scripts": [
+    {
+      "js": ["index.js"],
+        "matches": ["<all_urls>"]
+      
+    }
+  ]
+}
