@@ -91,6 +91,7 @@ window.onload = startTimer; // fenêtre ouverte le timer commence
 
 function showPopUp() {
   document.getElementById("modal").style.display = "block" // récupère l'élement html modal pour l'afficher en poppup
+  document.getElementById("time").style.display = "none"
 }
 
 const modal = document.getElementById("modal")

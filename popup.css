@@ -1,6 +1,6 @@
 .heighter { /* taille de fenêtre popup*/
     position: static;
-    height: 10px;
+    height: 20px;
     width: 200px;
 }
 
@@ -10,7 +10,7 @@
 
 .modal { 
     display: none; /* ne pas afficher tout de suite*/
-    height: 10px;
+    height: 20px;
     width: 200px;
 }
 
@@ -20,8 +20,6 @@
     bottom: 0;
     right: 0;
     left: 0;
-   
-    backdrop-filter: blur(10px);
 }
 
 
