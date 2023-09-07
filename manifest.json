@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "color",
+  "name": "Méditation",
   "version": "1.0",
-  "description": "modified title h1",
+  "description": "Extension de méditation",
   "permissions" : [
     "activeTab",
   "scripting",
