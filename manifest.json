@@ -10,10 +10,10 @@
 ],
 
   "icons": {
-    "128": "images/cercle-de-couleur.png"
+    "128": "images/icon.png"
   },
   "action": {
-    "default_icon": "images/cercle-de-couleur.png",
+    "default_icon": "images/icon.png",
     "default_popup": "popup.html"
   },
 
