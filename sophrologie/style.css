@@ -1,0 +1,13 @@
+*{
+    margin:0;
+    padding: 0;;
+}
+
+.custom-video-player-sophrologie{
+    position: relative;
+}
+
+video{
+    width: 300px;
+    aspect-ratio: 16/9;
+}
