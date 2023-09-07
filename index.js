@@ -1,3 +1,4 @@
+let seconds = 10;
 const maClasseElement = document.querySelector("body");
 maClasseElement.style.backdropFilter = "blur";
 
@@ -5,7 +6,7 @@ maClasseElement.style.backdropFilter = "blur";
 const newParagraph = document.createElement("modal");
 
 // Ajoutez du contenu au paragraphe (facultatif)
-newParagraph.textContent = `Temps de travail : ${seconds} secondes`;
+//newParagraph.textContent = `Temps de travail : ${seconds} secondes`;
 
 // Ajoutez le paragraphe comme enfant de l'élément avec la classe "maClasse"
 maClasseElement.appendChild(newParagraph);
@@ -27,7 +28,7 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-/ Démarrer le minuteur une fois que la page est chargée
+//Démarrer le minuteur une fois que la page est chargée
 window.addEventListener("load", () => {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.controller.postMessage("start");
@@ -42,7 +43,7 @@ navigator.serviceWorker.addEventListener("message", (event) => {
 });
 
 
-let seconds = 10;
+
 let intervalId;
 let isTimerActive = false;// le timer est nul 
 
