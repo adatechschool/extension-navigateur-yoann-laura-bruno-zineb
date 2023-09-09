@@ -19,18 +19,22 @@ body a h1 {
   font-size: 30px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  animation-duration: .8s;
+  animation-duration: 0.8s;
   animation-name: clignoter;
   animation-iteration-count: infinite;
-  
 }
 
 @keyframes clignoter {
-    0%   { opacity:1; }
-    40%   {opacity:0; }
-    100% { opacity:1; }
+  0% {
+    opacity: 1;
   }
-body a h1:hover {
-    color: black;
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
+body a h1:hover {
+  color: black;
+}
