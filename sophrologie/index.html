@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Médidation par la sophrologie</title>
-</head>
-<body>
-    
-    <div class="custom-video-player-sophrologie">
-        <video controls autoplay preload id="my-video">
-            <source src="video/video.mp4"  type="video/mp4">
-        
-        </video>
-        
+  </head>
+  <body>
+    <div class="btn">
+      <div class="play"></div>
+      <p>Play video</p>
     </div>
-</body>
+
+    <div class="custom-video-player-sophrologie">
+      <video controls  id="my-video">
+        <source src="video/video.mp4" type="video/mp4" />
+      </video>
+      <b class="close">Close</b>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
 </html>
