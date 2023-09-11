@@ -30,8 +30,6 @@ header h1 {
   text-align: center;
   padding-top: 20%;
   color: #fff;
-  border: 1px solid red;
-
   transform: 0.5s ease;
   animation: scrollDown 2.5s linear infinite alternate;
 }
