@@ -148,11 +148,13 @@ window.onload = startTimer; // fenêtre ouverte le timer commence
 function showPopUp() {
   document.getElementById("modal").style.display = "block"; // récupère l'élement html modal pour l'afficher en poppup
   document.getElementById("time").style.display = "none";
+  run_blur("body { filter: blur(0.5rem); }"); // on floute l'onglet courant
 }
 
 function hidePopup() {
   document.getElementById("modal").style.display = "none"; // récupère l'élement html modal pour l'afficher en poppup
   document.getElementById("time").style.display = "block";
+  run_blur("body { filter: blur(0); }"); // on rend lisible l'onglet courant
 }
 
 const modal = document.getElementById("modal");
@@ -174,3 +176,22 @@ const modal = document.getElementById("modal");
 //     }
 //   }
 // });
+
+async function run_blur(css) {
+  if (css) { // Quand le paramètre css existe et est différent selon le contexte d'appel:
+    const [currentTab] = await chrome.tabs.query({ // on sélectionne via la Chrome API
+      active: true, // l'onglet actif
+      currentWindow: true // de la fenêtre courante,
+    });
+    try { // puis on tente
+      await chrome.scripting.insertCSS({ // d'insérer la CSS
+        css: css, // dont la feuille de style est passée en paramètre
+        target: { // avec comme cible:
+          tabId: currentTab.id // l'identifiant de l'onglet courant, 
+        }
+      });
+    } catch (e) { // sauf quand une erreur survient
+      console.error(e); // alors on l'affiche dans la console en tant qu'erreur.
+    }
+  }
+}
