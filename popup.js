@@ -1,12 +1,13 @@
 let seconds = 0;
+const timer = {
+  seconds : 0,
+  minutes : 0,
+}
 const maClasseElement = document.querySelector("body");
 maClasseElement.style.backdropFilter = "blur";
 
 // créer un nouvel élement
 const newParagraph = document.createElement("modal");
-
-// Ajoutez du contenu au paragraphe (facultatif)
-//newParagraph.textContent = `Temps de travail : ${seconds} secondes`;
 
 // Ajoutez le paragraphe comme enfant de l'élément avec la classe "maClasse"
 maClasseElement.appendChild(newParagraph);
@@ -41,7 +42,7 @@ navigator.serviceWorker.addEventListener("message", (event) => {
 });
 
 // Sélectionnez l'élément par son ID
-const button = document.querySelector("button");
+const button = document.querySelector(".button");
 
 // Ajoutez un écouteur d'événements de clic
 button.addEventListener("click", function () {
@@ -50,21 +51,37 @@ button.addEventListener("click", function () {
 
 let intervalId;
 let isTimerActive = false; // le timer est nul
+const alarme = document.getElementById("song");
 
 function startTimer() {
   seconds = localStorage.getItem("timerNew");
-  console.log("je suis dans startTimer avec : ", seconds);
   isTimerActive = true; // le décompte commence
   intervalId = setInterval(function () {
     //  setInterval arrêter le timer
     seconds--; // décompte
     localStorage.setItem("timerNew", seconds); //  clé qui garde la valeur en mémoire, et permet d'enregistrer a l'actualisation
-    console.log("je mets à jour dans startTimer avec : ", seconds);
-
     updateTimerDisplay(seconds);
+
     if (seconds === 5 || seconds <= 0) {
       showPopUp(); // quand le temps est écoulé la poppup s'ouvre
       stopTimer(); // le temps s'arrete
+      //ajout de l'alarme
+      if (alarme) {
+        alarme.play();
+      }
+      if (Notification.permission === "granted") {
+        const text = seconds === "Take a break!";
+        new Notification(text);
+        if (seconds === 5) {
+          const popup = window.open(
+            "minipopup.html",
+            "Take a break!",
+            "width=700,height=30,left=100,top=100",
+            "z-index=100",
+          );
+          
+        }
+      }
     }
   }, 1000); // 1000 = 1 seconde
 }
@@ -76,29 +93,44 @@ function stopTimer() {
 }
 
 function updateTimerDisplay() {
+  const minutes = Math.floor(seconds / 60);
+  const tseconds = seconds % 60;
+
+  // Mettre à jour l'affichage du temps
+  document.getElementById("minutes").textContent = String(minutes).padStart(
+    2,
+    "0"
+  );
+  document.getElementById("seconds").textContent = String(seconds).padStart(
+    2,
+    "0"
+  );
   // récupère le temps dans le html
-  const timerElement = document.getElementById("timer");
-  if (timerElement) {
-    timerElement.textContent = `Temps de travail : ${seconds} secondes`; // création de texte quand le temps est écoulé
-  }
+  // const timerElement = document.getElementById("timer");
+  // // if (timerElement) {
+  // //   timerElement.textContent = `Temps de travail :  ${seconds} secondes`; // création de texte quand le temps est écoulé
+  // // }
 }
 
+// Appeler la fonction de mise à jour toutes les 1000 millisecondes (1 seconde)
+const interval2 = setInterval(updateTimerDisplay, 1000);
+updateTimerDisplay();
+
 function resumeTimer() {
-  console.log("je suis dans resumeTimer");
+  // si le timer est actif
   // reprends le temps là ou tu t'es arrêté
   if (!isTimerActive) {
     // si le timer est différent de faux
 
     const storedSecondsNew = localStorage.getItem("timerNew");
 
-    console.log(storedSecondsNew);
     if (storedSecondsNew > 0) {
       seconds = parseInt(storedSecondsNew); // timerSeconds est récupéré en chiffre
       hidePopup();
 
       startTimer(); // le timer repart au moment ou on s'est arrêté
     } else {
-      localStorage.setItem("timerNew", 20);
+      localStorage.setItem("timerNew", 1 * 10);
       hidePopup();
       startTimer();
     }
@@ -124,3 +156,21 @@ function hidePopup() {
 }
 
 const modal = document.getElementById("modal");
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   if ("Notification" in window) {
+//     if (
+//       Notification.permission !== "granted" &&
+//       Notification.permission !== "denied"
+//     ) {
+//       Notification.requestPermission().then(function (permission) {
+//         if (permission === "granted") {
+//           new Notification(
+//             "Awesome! You will be notified at the start of each session"
+//           );
+//           showPopUp();
+//         }
+//       });
+//     }
+//   }
+// });
