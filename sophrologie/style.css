@@ -1,16 +1,87 @@
-
-
-body{
-    background-color: #3b8d99 #6b6b83 #aa4b6b;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.custom-video-player-sophrologie{
-    position: relative;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-video{
-    width: 100vw;
+.btn {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.btn .play {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    /*aspect-ratio: 16 / 9;*/
+  transition: 0.5s;
+}
 
+.btn .play::before {
+  content: "";
+  position: absolute;
+  border: 25px solid #fff;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 0px solid transparent;
+  transform: translateX(5px);
+}
+.btn p {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #888;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.btn.active .play {
+  box-shadow: 0 0 0 150vh black;
+}
+
+.custom-video-player-sophrologie {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transition: 0.5s;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
+.custom-video-player-sophrologie.active {
+  transition-delay: 0.5s;
+  transform: translate(-50%, -50%) scale(1);
+}
+.custom-video-player-sophrologie .close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
 }
