@@ -6,13 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <div class="moon"></div>
+    <div id="owl">
+      <div class="body">
+        <div class="eye">
+          <span id="minutes">25</span>
+          <span id="seconds">00</span>
+
+          <div id="insideLeftEye"></div>
+
+          <div id="leftEye"></div>
+
+          <div id="leftEyebrown"><div></div></div>
+          <div id="ininside">
+            <div id="ininsideLeftEye">
+              <div id="clockdivMin"></div>
+            </div>
+
+            <div id="ininsideRightEye">
+              <div id="clockdivSec"></div>
+            </div>
+          </div>
+
+          <div id="insideRightEye"></div>
+
+          <div id="rightEye">
+            <span id="seconds">00</span>
+          </div>
+          <div id="rightEyebrown"><div></div></div>
+
+          <div id="nose"></div>
+        </div>
+        <!-- <div id="head"></div> -->
+        <div id="belly"><div id="inbelly"></div></div>
+
+        <div id="leftWing"></div>
+        <div id="rightWing"></div>
+
+        <div id="leftLeg"><span></span><span></span><span></span></div>
+
+        <div id="rightLeg"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+
+    <!-- <div class="star"></div> -->
+    <div id="tree"></div>
+    <!-- <div id="buildings"></div> -->
+
     <div class="heighter" id="time">
       <p id="timer"></p>
     </div>
     <div class="clock" id="js-clock">
-      <span id="minutes">25</span>
+      <!-- <span id="minutes">25</span> -->
       <span class="separator">:</span>
-      <span id="seconds">00</span>
+      <!-- <span id="seconds">00</span> -->
     </div>
     <!-- <button class="main-button" data-action="start" id="btn-start">
       Start
@@ -21,15 +68,11 @@
     <div class="modal" id="modal">
       <!--<div class="modal-back"></div>-->
       <div class="modal-container">
-        Continuer ?
-        <a
-          href="accueil.html"
-          id="modal-close"
-          target="_blank"
-          >Non</a
-        >
+        Besoin d'une pause?
+        <a href="accueil.html" id="modal-close" target="_blank">oui</a>
 
-        <button class="button">oui</button>
+        <button class="button">
+          non</button>
       </div>
     </div>
     <audio src="images/break.mp3" id="song"></audio>
