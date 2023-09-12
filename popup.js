@@ -55,10 +55,11 @@ function startTimer() {
   isTimerActive = true; // le décompte commence
   intervalId = setInterval(function () {
     //  setInterval arrêter le timer
-    seconds--; // décompte
-    localStorage.setItem("timerNew", seconds); //  clé qui garde la valeur en mémoire, et permet d'enregistrer a l'actualisation
-    updateTimerDisplay(seconds);
-
+    if (seconds > 0) {
+      seconds--; // décompte
+      localStorage.setItem("timerNew", seconds); //  clé qui garde la valeur en mémoire, et permet d'enregistrer a l'actualisation
+      updateTimerDisplay(seconds);
+    }
     if (seconds === 5 || seconds <= 0) {
       showPopUp(); // quand le temps est écoulé la poppup s'ouvre
       stopTimer(); // le temps s'arrete
