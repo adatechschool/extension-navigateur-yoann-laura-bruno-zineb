@@ -1,8 +1,5 @@
 let seconds = 0;
-const timer = {
-  seconds : 0,
-  minutes : 0,
-}
+
 const maClasseElement = document.querySelector("body");
 maClasseElement.style.backdropFilter = "blur";
 
