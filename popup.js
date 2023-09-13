@@ -145,7 +145,7 @@ async function run_blur(css) {
     const [currentTab] = await chrome.tabs.query({
       // on sélectionne via la Chrome API
       active: true, // l'onglet actif
-      currentWindow: true, // de la fenêtre courante,
+      currentWindow: true // de la fenêtre courante,
     });
     try {
       // puis on tente
