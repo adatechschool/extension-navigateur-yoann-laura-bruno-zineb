@@ -154,8 +154,8 @@ async function run_blur(css) {
         css: css, // dont la feuille de style est passée en paramètre
         target: {
           // avec comme cible:
-          tabId: currentTab.id, // l'identifiant de l'onglet courant,
-        },
+          tabId: currentTab.id // l'identifiant de l'onglet courant,
+        }
       });
     } catch (e) {
       // sauf quand une erreur survient
