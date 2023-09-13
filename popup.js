@@ -1,8 +1,5 @@
 let seconds = 0;
-const timer = {
-  seconds : 0,
-  minutes : 0,
-}
+
 const maClasseElement = document.querySelector("body");
 maClasseElement.style.backdropFilter = "blur";
 
@@ -58,29 +55,17 @@ function startTimer() {
   isTimerActive = true; // le décompte commence
   intervalId = setInterval(function () {
     //  setInterval arrêter le timer
-    seconds--; // décompte
-    localStorage.setItem("timerNew", seconds); //  clé qui garde la valeur en mémoire, et permet d'enregistrer a l'actualisation
-    updateTimerDisplay(seconds);
-
+    if (seconds > 0) {
+      seconds--; // décompte
+      localStorage.setItem("timerNew", seconds); //  clé qui garde la valeur en mémoire, et permet d'enregistrer a l'actualisation
+      updateTimerDisplay(seconds);
+    }
     if (seconds === 5 || seconds <= 0) {
       showPopUp(); // quand le temps est écoulé la poppup s'ouvre
       stopTimer(); // le temps s'arrete
       //ajout de l'alarme
       if (alarme) {
         alarme.play();
-      }
-      if (Notification.permission === "granted") {
-        const text = seconds === "Take a break!";
-        new Notification(text);
-        if (seconds === 5) {
-          const popup = window.open(
-            "minipopup.html",
-            "Take a break!",
-            "width=700,height=30,left=100,top=100",
-            "z-index=100",
-          );
-          
-        }
       }
     }
   }, 1000); // 1000 = 1 seconde
@@ -105,11 +90,6 @@ function updateTimerDisplay() {
     2,
     "0"
   );
-  // récupère le temps dans le html
-  // const timerElement = document.getElementById("timer");
-  // // if (timerElement) {
-  // //   timerElement.textContent = `Temps de travail :  ${seconds} secondes`; // création de texte quand le temps est écoulé
-  // // }
 }
 
 // Appeler la fonction de mise à jour toutes les 1000 millisecondes (1 seconde)
@@ -159,38 +139,26 @@ function hidePopup() {
 
 const modal = document.getElementById("modal");
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   if ("Notification" in window) {
-//     if (
-//       Notification.permission !== "granted" &&
-//       Notification.permission !== "denied"
-//     ) {
-//       Notification.requestPermission().then(function (permission) {
-//         if (permission === "granted") {
-//           new Notification(
-//             "Awesome! You will be notified at the start of each session"
-//           );
-//           showPopUp();
-//         }
-//       });
-//     }
-//   }
-// });
-
 async function run_blur(css) {
-  if (css) { // Quand le paramètre css existe et est différent selon le contexte d'appel:
-    const [currentTab] = await chrome.tabs.query({ // on sélectionne via la Chrome API
+  if (css) {
+    // Quand le paramètre css existe et est différent selon le contexte d'appel:
+    const [currentTab] = await chrome.tabs.query({
+      // on sélectionne via la Chrome API
       active: true, // l'onglet actif
-      currentWindow: true // de la fenêtre courante,
+      currentWindow: true, // de la fenêtre courante,
     });
-    try { // puis on tente
-      await chrome.scripting.insertCSS({ // d'insérer la CSS
+    try {
+      // puis on tente
+      await chrome.scripting.insertCSS({
+        // d'insérer la CSS
         css: css, // dont la feuille de style est passée en paramètre
-        target: { // avec comme cible:
-          tabId: currentTab.id // l'identifiant de l'onglet courant, 
-        }
+        target: {
+          // avec comme cible:
+          tabId: currentTab.id, // l'identifiant de l'onglet courant,
+        },
       });
-    } catch (e) { // sauf quand une erreur survient
+    } catch (e) {
+      // sauf quand une erreur survient
       console.error(e); // alors on l'affiche dans la console en tant qu'erreur.
     }
   }
